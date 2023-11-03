@@ -1,106 +1,86 @@
-import React, { useEffect, useState } from 'react';
-import RecipeForm from './RecipeForm'; // Create a RecipeForm component for updating recipe details.
-import { useParams } from 'react-router-dom';
-import Axios from 'axios';
 
-function RateComment() {
-    const { id } = useParams();
-    const [recipeData, setRecipeData] = useState({
-        image: null, // Assuming you want to update the image as well
-        description: '',
-        name: '',
-        email: '',
-        rating: 0,
-        comments: [],
-    });
+// import React, { useState } from 'react';
+// import Axios from 'axios';
+// import { useParams } from 'react-router-dom';
 
-    useEffect(() => {
-        Axios.get(`http://localhost:4000/recipeRoute/get-recipe/${id}`)
-            .then((res) => {
-                if (res.status === 200) {
-                    const { image, description, name, email, rating, comments } = res.data;
-                    setRecipeData({
-                        image,
-                        description,
-                        name,
-                        email,
-                        rating,
-                        comments,
-                    });
-                } else {
-                    Promise.reject();
-                }
-            })
-            .catch((err) => alert(err));
-    }, [id]);
+// function RateComment() {
+//     const { id } = useParams();
+//     const [name, setName] = useState('');
+//     const [email, setEmail] = useState('');
+//     const [rating, setRating] = useState(0);
+//     const [comments, setComments] = useState('');
 
-    const handleFormChange = (key, value) => {
-        setRecipeData((prevData) => ({
-            ...prevData,
-            [key]: value,
-        }));
-    };
+//     const handleRateCommentSubmit = () => {
+//         const data = {
+//             name,
+//             email,
+//             rating,
+//             comments,
+//         };
 
-    const handleRateCommentSubmit = () => {
-        // Update the rating and comments for the recipe
-        const data = {
-            rating: recipeData.rating,
-            comments: recipeData.comments,
-        };
+//         if (!id) {
+//             alert("Recipe ID is missing");
+//             return;
+//         }
 
-        Axios.put(`http://localhost:4000/recipeRoute/rate-comment/${id}`, data)
-            .then((res) => {
-                if (res.status === 200) {
-                    alert('Rating and comments submitted successfully');
-                } else {
-                    return Promise.reject();
-                }
-            })
-            .catch((err) => alert(err));
-    };
+//         Axios.post(`http://localhost:4000/recipeRoute/rate-comment/${id}`, data)
+//             .then((res) => {
+//                 if (res.status === 200) {
+//                     alert('Rating and comments submitted successfully');
+//                 } else {
+//                     return Promise.reject();
+//                 }
+//             })
+//             .catch((err) => alert(err));
+//     }
 
-    return (
-        <form onSubmit={handleRateCommentSubmit}>
-            <RecipeForm
-                onFormChange={handleFormChange}
-                imageValue={recipeData.image}
-                descriptionValue={recipeData.description}
-            />
-            <div className="text-center" style={{ maxWidth: "40%", margin: "0px auto" }}>
-                <input
-                    value={recipeData.name}
-                    onChange={(e) => handleFormChange('name', e.target.value)}
-                    className="form-control my-3"
-                    type="text"
-                    placeholder="Your Name"
-                />
-                <input
-                    value={recipeData.email}
-                    onChange={(e) => handleFormChange('email', e.target.value)}
-                    className="form-control my-3"
-                    type="email"
-                    placeholder="Your Email"
-                />
-                <input
-                    value={recipeData.rating}
-                    onChange={(e) => handleFormChange('rating', e.target.value)}
-                    className="form-control my-3"
-                    type="number"
-                    placeholder="Rate (0-5)"
-                />
-                <textarea
-                    value={recipeData.comments}
-                    onChange={(e) => handleFormChange('comments', e.target.value)}
-                    className="form-control my-3"
-                    placeholder="Comments"
-                    rows="3"
-                />
-                <button className="btn btn-success d-block mx-auto" type="submit">
-                    Submit Rating and Comments
-                </button>
-            </div>
-        </form>
-    );
-}
+//     return (
+//         <div className="rate-comment-form">
+//             <h3>Rate and Comment</h3>
+//             <div className="form-group">
+//                 <input
+//                     type="text"
+//                     value={name}
+//                     onChange={(e) => setName(e.target.value)}
+//                     placeholder="Your Name"
+//                     className="form-control"
+//                 />
+//             </div>
+//             <div className="form-group">
+//                 <input
+//                     type="email"
+//                     value={email}
+//                     onChange={(e) => setEmail(e.target.value)}
+//                     placeholder="Your Email"
+//                     className="form-control"
+//                 />
+//             </div>
+//             <div className="form-group">
+//                 <input
+//                     type="number"
+//                     value={rating}
+//                     onChange={(e) => setRating(e.target.value)}
+//                     placeholder="Rate (0-5)"
+//                     className="form-control"
+//                 />
+//             </div>
+//             <div className="form-group">
+//                 <textarea
+//                     value={comments}
+//                     onChange={(e) => setComments(e.target.value)}
+//                     placeholder="Comments"
+//                     rows="3"
+//                     className="form-control"
+//                 />
+//             </div>
+//             <button
+//                 onClick={handleRateCommentSubmit}
+//                 className="btn btn-primary"
+//             >
+//                 Submit Rating and Comments
+//             </button>
+//         </div>
+//     );
+// }
 
-export default RateComment;
+// export default RateComment;

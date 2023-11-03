@@ -1,7 +1,9 @@
+
+
+
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import RecipeCard from './RecipeCard'; // Create a RecipeCard component to display individual recipes.
-import { Link } from 'react-router-dom';
+import RecipeCard from './RecipeCard';
 
 function RecipeList() {
     const [recipes, setRecipes] = useState([]);
@@ -26,12 +28,11 @@ function RecipeList() {
 
     return (
         <>
-        <div className="container mt-4">
-            <div className="row">
-                {renderRecipes()}
+            <div className="container mt-4">
+                <div className="row">
+                    {renderRecipes()}
+                </div>
             </div>
-        </div>
-   
         </>
     );
 }

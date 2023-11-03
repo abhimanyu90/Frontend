@@ -1,34 +1,46 @@
+
 import React, { useState } from 'react';
 
 function RecipeForm(props) {
-    const [image, setImage] = useState(null);
-    const [description, setDescription] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [recipeName, setRecipeName] = useState('');
 
-    const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
+    const handleImageUrlChange = (e) => {
+        setImageUrl(e.target.value);
+    };
+
+    const handleRecipeNameChange = (e) => {
+        setRecipeName(e.target.value);
     };
 
     const handleDescriptionChange = (e) => {
-        setDescription(e.target.value);
+        props.onFormChange('description', e.target.value);
     };
 
     const handleClick = () => {
-        // Pass the image and description data to the parent component (UploadRecipe)
-        props.onFormChange('image', image);
-        props.onFormChange('description', description);
+        props.onFormChange('image', imageUrl);
+        props.onFormChange('recipeName', recipeName); // Include Recipe Name in the data
     };
 
     return (
         <div className="text-center" style={{ maxWidth: "40%", margin: "0px auto" }}>
             <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
+                type="text"
+                value={imageUrl}
+                onChange={handleImageUrlChange}
                 className="form-control my-3"
-                placeholder="Upload Image"
+                placeholder="Image URL"
+            />
+            <input
+                type="text"
+                value={recipeName} // Use the local state for Recipe Name
+                onChange={handleRecipeNameChange}
+                className="form-control my-3"
+                placeholder="Recipe Name"
+                style={{ fontWeight: 'bold' }}
             />
             <textarea
-                value={description}
+                value={props.descriptionValue}
                 onChange={handleDescriptionChange}
                 className="form-control my-3"
                 placeholder="Enter Recipe Description"

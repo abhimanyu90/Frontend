@@ -1,20 +1,21 @@
+
+
+
 import React, { useState } from 'react';
-import RecipeForm from './RecipeForm';
 import Axios from 'axios';
+import RecipeForm from './RecipeForm';
 
 function UploadRecipe() {
     const [recipeData, setRecipeData] = useState({
         description: '',
+        image: '',
+        recipeName: '', // Add a new state for Recipe Name
     });
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('image', recipeData.image); // Upload the image as part of FormData
-        formData.append('description', recipeData.description);
-
-        Axios.post('http://localhost:4000/recipeRoute/upload-recipe', formData)
+        Axios.post('http://localhost:4000/recipeRoute/upload-recipe', recipeData)
             .then((res) => {
                 if (res.status === 200) {
                     alert('Recipe added successfully');
@@ -34,10 +35,13 @@ function UploadRecipe() {
 
     return (
         <form onSubmit={handleFormSubmit}>
-            <RecipeForm onFormChange={handleFormChange} />
+            <RecipeForm
+                onFormChange={handleFormChange}
+                descriptionValue={recipeData.description}
+                recipeNameValue={recipeData.recipeName} // Pass the Recipe Name from state
+            />
         </form>
     );
 }
 
 export default UploadRecipe;
-

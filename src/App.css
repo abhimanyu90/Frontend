@@ -36,3 +36,53 @@
     transform: rotate(360deg);
   }
 }
+/* App.css */
+
+/* Add styles for the container */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Style the navigation bar */
+.navbar {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+}
+
+/* Style links in the navigation bar */
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+/* Style the upload form */
+.upload-form {
+  margin-top: 20px;
+}
+
+/* Style the recipe list */
+.recipe-list-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Style the rate comment section */
+.rate-comment-form {
+  margin-top: 20px;
+}
+
+/* Style the rate comment page */
+.rate-comment-container {
+  margin-top: 20px;
+}
+body {
+  background-image: url('a.jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image file */
+  background-size: cover; /* Cover the entire container */
+  background-repeat: no-repeat; /* Do not repeat the background image */
+  background-attachment: fixed; /* Fixed background image, so it doesn't scroll with the content */
+}
