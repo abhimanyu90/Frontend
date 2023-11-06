@@ -10,7 +10,7 @@ import RecipeList from './components/RecipeList';
 import RateCommentPage from './components/RateCommentPage';
 import Footer from './components/Footer';
 import Features from './components/Features';
-
+import ExampleComponent from './ExampleComponent';
 function Home() {
     return (
         <div className="home">
@@ -33,7 +33,7 @@ function App() {
                 <Route path='/recipe-list' element={<RecipeList />} />
                 <Route path='/rate-comment/:id' element={<RateCommentPage />} />
             </Routes>
-                
+                <ExampleComponent />
             {/* <Footer /> */}
         </Router>
     );
