@@ -46,3 +46,4 @@ const ExampleComponent = () => {
     </div>
   );
 };
+export default ExampleComponent;
